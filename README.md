@@ -2,26 +2,22 @@
 
 Deep navy base, warm gold accent, dusty teal secondaries.
 
-The immensity of space is the last frontier of the natural world, and it has
-made people dream and build for as long as there have been people to look up
-at it.
+![Terminus](preview.png)
 
-It did that to me early. What I remember most are summer nights back home,
-lying out under a sky full of stars and wondering what was really out at those
-distant bright points — and whether the light was telling me the truth. It
-takes so long to reach us that whatever sent it may be long gone.
+Terminus is the planet at the far edge of the galaxy in Asimov's *Foundation* —
+the end of the line, picked on purpose as the place to start building rather
+than the place to end up. That idea has travelled a long way past the books.
+Plenty of people who make things have taken something from it: that you begin at
+the edge, with less than you wanted, and build anyway. The pun is free — a
+terminal theme named Terminus.
 
-This theme is a tribute to those nights, when my mind fell into step with
-everything around it and simply ran. I want that feeling back every time I sit
-down at Omarchy: the pull to make something, and to lose track of the hours
-building, experimenting and learning my way through this remarkable operating
-system.
+The palette is sampled from the promotional artwork, then corrected for terminal
+legibility.
 
-![Terminus](palette-check.png)
-
-*Mock-up, not a screenshot — see [PREVIEW.md](PREVIEW.md).*
-
-The palette was sampled from *Foundation* promotional artwork and then corrected for terminal legibility. The name is Terminus, the planet at the edge of the galaxy where the Foundation begins — a beginning rather than a decline, and a pun a terminal theme has earned.
+It owns the only navy ground in the set; the others are a cold near-black or a
+warm sepia. Its border gradient also travels furthest — gold to dusty magenta
+across 45 degrees — so the focused window, the menu and every notification
+carry both ends of the palette at once.
 
 ## Install
 
@@ -49,7 +45,9 @@ in 2.x.
 | `muted` | `#5e6e87` |
 
 Window borders come from `hyprland_active_border`, which Hyprland and every
-shell card share.
+shell card share. [`palette-check.png`](palette-check.png) renders the whole
+palette into a simulated bar, terminal, menu and notification, if you want to
+judge the colour relationships without installing anything.
 
 ### Contrast
 
@@ -168,15 +166,14 @@ you re-apply a theme or restart it.
 
 ## The rest of the set
 
-Five themes off one set of wallpapers, each a different answer to which axis
-is the ground and which is the signal.
+Different answers to the same question: which axis is the ground, and which is
+the signal.
 
 | Theme | |
 |-------|--|
 | [Periphery](https://github.com/r-bart/omarchy-periphery-theme) | Cold governs; amber only warns. |
 | [Vault](https://github.com/r-bart/omarchy-vault-theme) | Sodium light on stone. |
 | [Starsend](https://github.com/r-bart/omarchy-starsend-theme) | One signal against the dark. |
-| [Dawn](https://github.com/r-bart/omarchy-dawn-theme) | The sky above the vault, not the vault. |
 
 ## License
 
