@@ -107,9 +107,9 @@ overrides the machine:
   this same `colors.toml`, so the hand-written copy bought nothing and only
   went stale.
 
-`hyprland-extra.lua` is documentation, not a theme file. It is installed with
-the rest of the directory and then never read, because Omarchy loads no
-Hyprland config from a theme — see [Window metrics](#window-metrics).
+`hyprland-extra.lua` is documentation, not a theme file. Omarchy loads no
+Hyprland config from a theme, and `omarchy theme install` drops it outright —
+see [Window metrics](#window-metrics).
 
 ## Backgrounds
 
@@ -147,8 +147,43 @@ these.
 
 Not part of the theme. Omarchy never reads a Hyprland config from a theme
 directory; the only thing a theme sends the compositor is
-`hyprland_active_border`. To match the design, paste `hyprland-extra.lua` into
-`~/.config/hypr/looknfeel.lua`.
+`hyprland_active_border`. To match the design, paste the block below into
+`~/.config/hypr/looknfeel.lua`, which is loaded after both Omarchy's defaults
+and the active theme, so it wins over both.
+
+Do not go looking for `hyprland-extra.lua` on your disk after installing. It is
+in this repository to be read, but `omarchy theme install` stages only what is
+colour and drops every `.lua` a cloned theme ships — a theme's Lua is code the
+compositor would run at login, and installing someone's theme should change
+what your desktop looks like, never what it runs. The block is reproduced here
+so this README stands on its own.
+
+```lua
+hl.config({
+  decoration = {
+    rounding_power = 4,
+
+    -- The 0.05 gap is what marks the focused window.
+    active_opacity = 0.90,
+    inactive_opacity = 0.85,
+
+    -- Translucency without blur makes text unreadable over these wallpapers.
+    blur = {
+      enabled = true,
+      size = 6,
+      passes = 2,
+    },
+
+    shadow = {
+      enabled = true,
+      range = 20,
+      render_power = 4,
+      color = "rgba(0c162699)",
+      color_inactive = "rgba(0c162666)",
+    },
+  },
+})
+```
 
 Omarchy 4 configures Hyprland in **Lua**, not `.conf`, and there is no
 `~/.config/hypr/hyprland.conf`. Corner rounding is a machine-level setting that
