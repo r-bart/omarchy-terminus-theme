@@ -166,14 +166,13 @@ you re-apply a theme or restart it.
 
 ## The rest of the set
 
-Different answers to the same question: which axis is the ground, and which is
-the signal.
+Same five wallpapers, different palette over them.
 
 | Theme | |
 |-------|--|
-| [Periphery](https://github.com/r-bart/omarchy-periphery-theme) | Cold governs; amber only warns. |
-| [Vault](https://github.com/r-bart/omarchy-vault-theme) | Sodium light on stone. |
-| [Starsend](https://github.com/r-bart/omarchy-starsend-theme) | One signal against the dark. |
+| [Periphery](https://github.com/r-bart/omarchy-periphery-theme) | Near-black teal ground, cold teal accent. |
+| [Vault](https://github.com/r-bart/omarchy-vault-theme) | Warm sepia ground, orange accent. |
+| [Starsend](https://github.com/r-bart/omarchy-starsend-theme) | Near-black ground, one amber signal. |
 
 ## License
 
