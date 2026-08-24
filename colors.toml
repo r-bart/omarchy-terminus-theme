@@ -1,0 +1,44 @@
+# Terminus — deep navy base, warm gold accent, dusty teal secondaries.
+# Sampled from Foundation promotional art, corrected for terminal legibility.
+
+mode = "dark"
+
+accent = "#d9a862"
+selection = "#26364e"
+muted = "#5e6e87"
+
+background = "#0c1626"
+dark_background = "#09111e"
+darker_background = "#070c15"
+lighter_background = "#17243a"
+
+foreground = "#d8cbb4"
+dark_foreground = "#9f9f9e"
+light_foreground = "#e5dac5"
+bright_foreground = "#f2e8d5"
+
+red = "#db684c"
+green = "#93b56f"
+yellow = "#d9a862"
+orange = "#dd8b57"
+blue = "#6e93bb"
+magenta = "#ab7fa8"
+cyan = "#7fa8ab"
+# Written, not derived: left alone the resolver mixes `orange` 50% toward
+# black and lands at 2.22:1, below the floor for the Neovim highlight
+# that uses it.
+brown = "#7a5e37"
+
+# Hyprland window borders are a theme key, read by the hyprland.lua template.
+hyprland_active_border = "rgba(d9a862ee) rgba(ab7fa8ee) 45deg"
+hyprland_inactive_border = "rgba(26364eaa)"
+
+# Bright variants. These are NOT decoration: without them Omarchy derives each
+# one as its base mixed 20% toward white, which is not the designed value.
+# `bright_red` is what carries the urgent tone — there is no `urgent` key.
+bright_red     = "#e07a5f"
+bright_green   = "#a8c48a"
+bright_yellow  = "#f0d4a0"
+bright_blue    = "#8fb0d4"
+bright_magenta = "#c9a3c4"
+bright_cyan    = "#a8ccce"
