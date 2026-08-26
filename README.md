@@ -75,11 +75,11 @@ Every chromatic clears 4.5:1 on both. Body text clears 10:1.
 runs on your machine: no `neovim.lua`, no terminal config, no `vscode.json`,
 no `shell.toml`.
 
-That is a choice, not a constraint. A theme *can* ship those files, and
-Omarchy will use them: `omarchy-theme-set` copies the whole theme directory
-into the staging area, and `omarchy-theme-set-templates` only renders a
-template when the output file does not already exist, so anything the theme
-ships wins over the generated version. Leaving them out is what makes the
+Half a choice. Those three would be dropped whatever this repository did: a
+theme installed from a repo keeps only what is colour. The choice is the rest —
+a theme *can* ship `shell.toml`, `btop.theme` or `helix.toml`, and Omarchy
+keeps them, because `omarchy-theme-set-templates` only renders a template when
+the output file does not already exist. Leaving them out is what makes the
 entire desktop fall out of the palette, window borders included, and keeps
 this theme picking up shell improvements on each Omarchy release instead of
 pinning a snapshot.
@@ -107,9 +107,10 @@ overrides the machine:
   this same `colors.toml`, so the hand-written copy bought nothing and only
   went stale.
 
-`hyprland-extra.lua` is documentation, not a theme file. Omarchy loads no
-Hyprland config from a theme, and `omarchy theme install` drops it outright —
-see [Window metrics](#window-metrics).
+No Hyprland config either, and that one is not a choice. Omarchy reads none
+from a theme directory, and `omarchy theme install` drops every `.lua` a cloned
+theme ships. The window metrics this design was drawn against are in
+[Window metrics](#window-metrics), to paste in yourself.
 
 ## Backgrounds
 
@@ -121,24 +122,33 @@ the current entry.
 
 | File | Scene |
 |------|-------|
-| `1-crescent.jpg` **(default)** | Crescent over a planet’s limb, orange atmosphere. The upper-left is nearly empty, so windows land on black. |
+| `1-crescent.webp` **(default)** | Crescent over a planet’s limb, orange atmosphere. The upper-left is nearly empty, so windows land on black. |
 | `2-gate.jpg` | Monolith with a vertical seam of light, a crescent in the upper left. The seam is near-white and dead centre, where the menu opens. |
-| `3-dune.jpg` | Risograph halftone dune. High contrast centre-left; best at full window opacity. |
+| `3-dune.webp` | Risograph halftone dune. High contrast centre-left; best at full window opacity. |
 | `4-flow.jpg` | Cosmic flow, warm filaments. Same caveat as the dune. |
 | `5-arch.jpg` | A lit concrete shell on a frozen shore under a vast crescent planet. Everything bright sits in the lower third; the sky above is flat, so windows land clean. |
 
-JPEG, not WebP. Omarchy's shell is Quickshell, and a stock Omarchy 4 install
-has no Qt WebP decoder — `qt6-imageformats` is not a dependency of `omarchy`
-or `quickshell`, and none of the 22 built-in themes ship a `.webp` background.
-A WebP wallpaper is selected happily by `omarchy-theme-set` and then fails at
-`Error decoding: ... Unsupported image format`, leaving a black desktop, a
-blank tile in the theme switcher and blank thumbnails in the background picker.
+Two formats, and the reason is weight. Everyone who installs the theme clones
+`backgrounds/` in full, and a wallpaper is decoded to the same framebuffer
+whatever it weighs. The two heaviest scenes are WebP and fall from 5.43 MB to
+2.39 MB together. The other three are already under 2.2 MB and stay JPEG.
 
-Encoded at 2912×1632, quality 95, baseline, with no chroma subsampling. Full
-chroma matters here. Every scene sets a saturated warm edge against a cold
-field, and 4:2:0 softens that edge. macOS `sips` writes 4:4:4 only at quality
-100, which triples the file for no visible gain. These were built with
-`cjpeg -quality 95 -sample 1x1 -optimize`.
+WebP is safe on Omarchy 4, and it was not always. `qt6-imageformats` — the Qt
+decoder Quickshell needs — reached the base package list on 19 August 2026,
+through the `Add webp decoding to the shell` migration. 79 of the 92
+backgrounds Omarchy itself ships are now `.webp`, and `omarchy-theme-set` lists
+`.webp` among the extensions it accepts. On an install that predates the
+migration and has never updated, a WebP wallpaper fails at
+`Error decoding: ... Unsupported image format` and leaves a black desktop.
+Updating Omarchy is the fix.
+
+All five are 2912×1632. The JPEGs are quality 95, baseline, with no chroma
+subsampling. Full chroma matters here. Every scene sets a saturated warm edge
+against a cold field, and 4:2:0 softens that edge. macOS `sips` writes 4:4:4
+only at quality 100, which triples the file for no visible gain. These were
+built with `cjpeg -quality 95 -sample 1x1 -optimize`. The WebPs were re-encoded
+from them, capped at 4K wide, with
+`magick input.jpg -strip -resize '3840>' -quality 82 output.webp`.
 
 Add your own in `~/.config/omarchy/backgrounds/terminus/` — they appear alongside
 these.
@@ -151,12 +161,12 @@ directory; the only thing a theme sends the compositor is
 `~/.config/hypr/looknfeel.lua`, which is loaded after both Omarchy's defaults
 and the active theme, so it wins over both.
 
-Do not go looking for `hyprland-extra.lua` on your disk after installing. It is
-in this repository to be read, but `omarchy theme install` stages only what is
-colour and drops every `.lua` a cloned theme ships — a theme's Lua is code the
-compositor would run at login, and installing someone's theme should change
-what your desktop looks like, never what it runs. The block is reproduced here
-so this README stands on its own.
+This repository ships no `.lua` of its own, and none would survive if it did.
+`omarchy theme install` stages only what is colour and drops every `.lua` a
+cloned theme ships — a theme's Lua is code the compositor would run at login,
+and installing someone's theme should change what your desktop looks like,
+never what it runs. The block below is the whole of it, so this README stands
+on its own.
 
 ```lua
 hl.config({
