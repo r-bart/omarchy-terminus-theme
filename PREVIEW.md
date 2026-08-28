@@ -41,6 +41,6 @@ magick preview.png -strip -resize '1200>' -quality 80 terminus.webp
 
 WebP is right for the site — a browser decodes it, unlike Omarchy's Qt-based
 shell, which is why the backgrounds in this repository are JPEG. Open a pull
-request against `omacom-io/omarchy-site` adding the webp to `assets/themes/` and
+request against `omacom/omarchy-site` adding the webp to `assets/themes/` and
 a `<figure>` block to `themes/index.html`, alphabetically. The webp does not
 belong in this repository; `.gitignore` already keeps it out.
